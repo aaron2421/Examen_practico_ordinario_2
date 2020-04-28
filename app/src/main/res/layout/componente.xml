@@ -5,8 +5,30 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tvUser"
+        android:id="@+id/tvNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp" />
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="Nombre"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="18dp"
+        android:paddingTop="5dp"
+        android:text="Username"
+        android:textColor="#B3000000"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="410dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="#7F000000" />
+
 </LinearLayout>

@@ -10,18 +10,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class Adaptador extends RecyclerView.Adapter<Adaptador.MyViewHolder> {
-    private ArrayList<String> myDataSet;
+public class Adaptador extends RecyclerView.Adapter<Adaptador.MyViewHolder> implements View.OnClickListener {
+    private ArrayList<Usuario> myDataSet;
+    private View.OnClickListener click;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView dato;
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            dato = itemView.findViewById(R.id.tvUser);
+    public void setOnClickListener(View.OnClickListener listener){
+        this.click = listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (click!=null){
+            click.onClick(v);
         }
     }
 
-    public Adaptador(ArrayList<String> myDataset){
+    public Adaptador(ArrayList<Usuario> myDataset){
         this.myDataSet = myDataset;
     }
 
@@ -29,17 +33,30 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.MyViewHolder> {
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v =  LayoutInflater.from(parent.getContext()).inflate(R.layout.componente, null, false);
+
+        v.setOnClickListener(this);
+
         return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.dato.setText(myDataSet.get(position));
+        holder.nombre.setText(myDataSet.get(position).getNombre());
+        holder.username.setText(myDataSet.get(position).getUsername());
     }
 
     @Override
     public int getItemCount() {
         return myDataSet.size();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+        TextView nombre, username;
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            nombre = (TextView) itemView.findViewById(R.id.tvNombre);
+            username = (TextView) itemView.findViewById(R.id.tvUsername);
+        }
     }
 
 }
