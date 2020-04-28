@@ -13,16 +13,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
-    public void controlUsuarios(View v){
+    public void controlUsuarios(View v) {
         Intent intent = new Intent(this, ControlUsuarios.class);
         startActivity(intent);
     }
 
-    //Aqui va el método de archivos
+    public void controlArchivos(View view) {
+        Intent intent = new Intent(this, ControlArchivosLogin.class);
+        startActivity(intent);
+    }
 
-    public void salir(View v){
+    public void salir(View v) {
         finish();
     }
 }

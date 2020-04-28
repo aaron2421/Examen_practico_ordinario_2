@@ -2,13 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.examen_practico_ordinario_2">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ListaActivity"></activity>
+        <activity android:name=".Archivos" />
+        <activity android:name=".ControlArchivosLogin" />
         <activity android:name=".ListaUsuarios" />
         <activity android:name=".ControlUsuarios" />
         <activity android:name=".MainActivity">
