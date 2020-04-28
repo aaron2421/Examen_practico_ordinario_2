@@ -1,6 +1,7 @@
 package com.example.examen_practico_ordinario_2;
 
 public class Usuario {
+    private String id;
     private String nombre;
     private String username;
     private String apellido;
@@ -15,7 +16,8 @@ public class Usuario {
         this.username = username;
     }
 
-    public Usuario(String nombre, String username, String apellido, String pass) {
+    public Usuario(String id, String nombre, String username, String apellido, String pass) {
+        this.id = id;
         this.nombre = nombre;
         this.username = username;
         this.apellido = apellido;
@@ -52,5 +54,13 @@ public class Usuario {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

@@ -22,6 +22,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.MyViewHolder> impl
     public void onClick(View v) {
         if (click!=null){
             click.onClick(v);
+
         }
     }
 
@@ -54,8 +55,8 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.MyViewHolder> impl
         TextView nombre, username;
         public MyViewHolder(View itemView) {
             super(itemView);
-            nombre = (TextView) itemView.findViewById(R.id.tvNombre);
-            username = (TextView) itemView.findViewById(R.id.tvUsername);
+            nombre = itemView.findViewById(R.id.tvNombre);
+            username = itemView.findViewById(R.id.tvUsername);
         }
     }
 
