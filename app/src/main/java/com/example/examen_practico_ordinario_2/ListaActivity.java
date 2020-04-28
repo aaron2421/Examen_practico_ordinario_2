@@ -1,6 +1,8 @@
 package com.example.examen_practico_ordinario_2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +13,7 @@ import java.util.ArrayList;
 
 public class ListaActivity extends AppCompatActivity {
 
-    ListView listView;
+    RecyclerView recyclerView;
     Intent intentLista;
 
     @Override
@@ -19,17 +21,21 @@ public class ListaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lista_archivos);
 
-        listView = findViewById(R.id.listaId);
+        recyclerView = findViewById(R.id.listaId);
 
         intentLista = getIntent();
 
         Bundle b = intentLista.getExtras();
 
         String[] archivos = b.getStringArray("array");
+        System.out.println("length: " + archivos.length);
         System.out.println("Archivos: " + archivos[0]);
         System.out.println("Archivos: " + archivos[1]);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, archivos);
-        listView.setAdapter(adapter);
+
+        ArchivosAdapter adapter = new ArchivosAdapter(this, archivos);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
     }
 }

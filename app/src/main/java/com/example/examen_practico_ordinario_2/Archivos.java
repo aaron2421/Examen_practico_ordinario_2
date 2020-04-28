@@ -38,8 +38,8 @@ public class Archivos extends AppCompatActivity {
     EditText editTxtTexto;
     Button btnNuevo, btnGuardar, btnAbrir;
     ListView listView;
-    Intent intentLista;
-    Bundle bundle;
+    Intent intentLista, intent2;
+    Bundle bundle, bundle2;
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
@@ -128,6 +128,7 @@ public class Archivos extends AppCompatActivity {
                 int i = -1;
 
                 bundle = new Bundle();
+                bundle2 = new Bundle();
 
                 String[] listaArchivos = new String[50];
 
@@ -158,6 +159,7 @@ public class Archivos extends AppCompatActivity {
                 }
 
                 bundle.putStringArray("array", listaArchivos);
+
                 intentLista = new Intent(getApplicationContext(), ListaActivity.class);
                 intentLista.putExtras(bundle);
                 startActivity(intentLista);

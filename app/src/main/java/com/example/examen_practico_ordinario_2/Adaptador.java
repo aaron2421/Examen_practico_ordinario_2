@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Adaptador extends RecyclerView.Adapter<Adaptador.MyViewHolder> {
     private ArrayList<String> myDataSet;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView dato;
         public MyViewHolder(View itemView) {
             super(itemView);
