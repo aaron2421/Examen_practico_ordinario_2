@@ -38,7 +38,7 @@ public class Archivos extends AppCompatActivity {
     EditText editTxtTexto;
     Button btnNuevo, btnGuardar, btnAbrir;
     ListView listView;
-    Intent intentLista, intent2;
+    Intent intentLista;
     Bundle bundle, bundle2;
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -52,7 +52,7 @@ public class Archivos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archivos);
 
-        final SQLiteDatabase databaseUsers = this.openOrCreateDatabase("usersDB", MODE_PRIVATE, null);
+        final SQLiteDatabase databaseUsers = this.openOrCreateDatabase("controlUsuarios", MODE_PRIVATE, null);
 
         verifyStoragePermissions(this);
 
@@ -80,13 +80,13 @@ public class Archivos extends AppCompatActivity {
                 String userCursor = "";
                 int bound = 100;
 
-                Cursor cursor = databaseUsers.rawQuery("select * from usersLogin", null);
+                Cursor cursor = databaseUsers.rawQuery("select * from usuario", null);
                 cursor.moveToPosition(-1);
 
                 Random randomNum = new Random(System.currentTimeMillis());
 
                 while (cursor.moveToNext()) {
-                    userCursor = cursor.getString(cursor.getColumnIndex("usuario"));
+                    userCursor = cursor.getString(cursor.getColumnIndex("user"));
                 }
 
                 File userFolder = new File(Environment.getExternalStorageDirectory() + "/" + userCursor + "/");
@@ -132,11 +132,11 @@ public class Archivos extends AppCompatActivity {
 
                 String[] listaArchivos = new String[50];
 
-                Cursor cursor = databaseUsers.rawQuery("select * from usersLogin", null);
+                Cursor cursor = databaseUsers.rawQuery("select * from usuario", null);
                 cursor.moveToPosition(-1);
 
                 while (cursor.moveToNext()) {
-                    userCursor = cursor.getString(cursor.getColumnIndex("usuario"));
+                    userCursor = cursor.getString(cursor.getColumnIndex("user"));
                 }
 
                 String newPath = sdPath + "/" + userCursor + "/";

@@ -11,11 +11,6 @@ public class Usuario {
 
     }
 
-    public Usuario(String nombre, String username) {
-        this.nombre = nombre;
-        this.username = username;
-    }
-
     public Usuario(String id, String nombre, String username, String apellido, String pass) {
         this.id = id;
         this.nombre = nombre;

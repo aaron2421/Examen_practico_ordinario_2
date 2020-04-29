@@ -17,7 +17,6 @@ public class ControlArchivosLogin extends AppCompatActivity {
     EditText editTxtUsuario, editTextPass;
     Button btnLogin;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,26 +28,18 @@ public class ControlArchivosLogin extends AppCompatActivity {
 
         final Intent intent = new Intent(this, Archivos.class);
 
-        final SQLiteDatabase databaseUsers = this.openOrCreateDatabase("usersDB", MODE_PRIVATE, null);
-
-        /*
-        databaseUsers.execSQL("create table usersLogin (" + " id integer PRIMARY KEY autoincrement, " + " usuario text, " + " password text);");
-        databaseUsers.execSQL( "insert into usersLogin(usuario, password) values ('BetoAdmin', '123456789');" );
-        */
-
-        //Usuario: BetoAdmin
-        //Password: 123456789
+        final SQLiteDatabase databaseUsers = this.openOrCreateDatabase("controlUsuarios", MODE_PRIVATE, null);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cursor cursor = databaseUsers.rawQuery("select * from usersLogin", null);
+                Cursor cursor = databaseUsers.rawQuery("select * from usuario", null);
                 cursor.moveToPosition(-1);
 
                 while (cursor.moveToNext()) {
 
-                    String userCursor = cursor.getString(cursor.getColumnIndex("usuario"));
-                    String passCursor = cursor.getString(cursor.getColumnIndex("password"));
+                    String userCursor = cursor.getString(cursor.getColumnIndex("user"));
+                    String passCursor = cursor.getString(cursor.getColumnIndex("pass"));
                     String userEditText = editTxtUsuario.getText().toString();
                     String passEditText = editTextPass.getText().toString();
 

@@ -22,7 +22,9 @@ public class ControlUsuarios extends AppCompatActivity {
         setContentView(R.layout.activity_control_usuarios);
 
         db = this.openOrCreateDatabase("controlUsuarios", MODE_PRIVATE, null);
-        //db.execSQL("create table  usuario(ID integer PRIMARY KEY autoincrement, name text, ape text, user text, pass text); ");
+
+        //Comentar la linea de abajo despues de haber creado la base de datos, o la segunda vez que se corra la app
+        db.execSQL("create table  usuario(ID integer PRIMARY KEY autoincrement, name text, ape text, user text, pass text); ");
 
         nombre = findViewById(R.id.etNombre);
         apellido = findViewById(R.id.etApellido);
@@ -41,16 +43,17 @@ public class ControlUsuarios extends AppCompatActivity {
         apellido.setText(null);
         username.setText(null);
         pass.setText(null);
+        id="";
     }
 
     public void guardarUsuario(View v){
-        //Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
         if (!id.equals("")){
             db.execSQL("update usuario set name='"+ nombre.getText().toString() +"'," +
                     " ape='"+ apellido.getText().toString() +"'," +
                     " user='"+ username.getText().toString() +"'," +
                     " pass='"+ pass.getText().toString() +"' " +
                     "where ID='" + id + "'");
+            id="";
             Toast.makeText(getApplicationContext(), "Usuario modificado con éxito", Toast.LENGTH_SHORT).show();
         }else if (id.equals("")){
             db.execSQL("insert into usuario(name, ape, user, pass) values ('" + nombre.getText().toString() + "'," +
@@ -64,6 +67,7 @@ public class ControlUsuarios extends AppCompatActivity {
     public void abrirUsuario(View v){
         intent = new Intent(this, ListaUsuarios.class);
         startActivity(intent);
+        finish();
     }
 
     public void borrarUsuario(View v){

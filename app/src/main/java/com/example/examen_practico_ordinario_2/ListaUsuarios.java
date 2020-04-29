@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -32,7 +31,6 @@ public class ListaUsuarios extends AppCompatActivity {
         datos = new ArrayList<>();
 
         consultarUsuarios();
-        //llenarLista();
 
         final Adaptador adp = new Adaptador(datos);
 
@@ -47,18 +45,12 @@ public class ListaUsuarios extends AppCompatActivity {
                 in.putExtra("username", datos.get(recyclerView.getChildAdapterPosition(v)).getUsername());
                 in.putExtra("pass", datos.get(recyclerView.getChildAdapterPosition(v)).getPass());
                 startActivity(in);
+                finish();
             }
         });
 
         recyclerView.setAdapter(adp);
     }
-
-    /*
-    public void  llenarLista(){
-        datos.add(new Usuario("Aarón", "aaron2421"));
-        datos.add(new Usuario("Alberto", "Beetoo13"));
-    }
-     */
 
     public void consultarUsuarios(){
         //Cursor cursor = db.rawQuery("select ape, name, user, pass from usuario", null);
