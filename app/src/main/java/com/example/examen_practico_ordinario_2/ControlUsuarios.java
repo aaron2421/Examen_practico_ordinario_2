@@ -24,7 +24,7 @@ public class ControlUsuarios extends AppCompatActivity {
         db = this.openOrCreateDatabase("controlUsuarios", MODE_PRIVATE, null);
 
         //Comentar la linea de abajo despues de haber creado la base de datos, o la segunda vez que se corra la app
-        db.execSQL("create table  usuario(ID integer PRIMARY KEY autoincrement, name text, ape text, user text, pass text); ");
+        //db.execSQL("create table  usuario(ID integer PRIMARY KEY autoincrement, name text, ape text, user text, pass text); ");
 
         nombre = findViewById(R.id.etNombre);
         apellido = findViewById(R.id.etApellido);

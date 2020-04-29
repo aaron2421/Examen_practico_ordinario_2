@@ -123,49 +123,59 @@ public class Archivos extends AppCompatActivity {
         btnAbrir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String sdPath = Environment.getExternalStorageDirectory().getAbsolutePath();
-                String userCursor = "";
-                int i = -1;
 
-                bundle = new Bundle();
-                bundle2 = new Bundle();
+                try {
 
-                String[] listaArchivos = new String[50];
 
-                Cursor cursor = databaseUsers.rawQuery("select * from usuario", null);
-                cursor.moveToPosition(-1);
+                    String sdPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+                    String userCursor = "";
+                    int i = -1;
 
-                while (cursor.moveToNext()) {
-                    userCursor = cursor.getString(cursor.getColumnIndex("user"));
-                }
+                    bundle = new Bundle();
+                    bundle2 = new Bundle();
 
-                String newPath = sdPath + "/" + userCursor + "/";
+                    String[] listaArchivos = new String[50];
 
-                File findFolder = new File(newPath);
+                    Cursor cursor = databaseUsers.rawQuery("select * from usuario", null);
+                    cursor.moveToPosition(-1);
 
-                System.out.println("Findfolder: " + findFolder);
-
-                for (File file : findFolder.listFiles()) {
-                    i++;
-                    //System.out.println("Archivo: " + file);
-                    try {
-                        String textoArchivo = Files.toString(file, Charsets.UTF_8);
-                        listaArchivos[i] = textoArchivo;
-                        System.out.println(i);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    while (cursor.moveToNext()) {
+                        userCursor = cursor.getString(cursor.getColumnIndex("user"));
                     }
 
+                    String newPath = sdPath + "/" + userCursor + "/";
+
+                    File findFolder = new File(newPath);
+
+                    System.out.println("Findfolder: " + findFolder);
+
+                    for (File file : findFolder.listFiles()) {
+                        i++;
+                        //System.out.println("Archivo: " + file);
+                        try {
+                            String textoArchivo = Files.toString(file, Charsets.UTF_8);
+                            listaArchivos[i] = textoArchivo;
+                            System.out.println(i);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    bundle.putStringArray("array", listaArchivos);
+
+                    intentLista = new Intent(getApplicationContext(), ListaActivity.class);
+                    intentLista.putExtras(bundle);
+                    startActivity(intentLista);
+
+                } catch (Exception e) {
+                    Toast.makeText(getBaseContext(), "No hay archivos para mostrar, crea uno", Toast.LENGTH_SHORT).show();
                 }
-
-                bundle.putStringArray("array", listaArchivos);
-
-                intentLista = new Intent(getApplicationContext(), ListaActivity.class);
-                intentLista.putExtras(bundle);
-                startActivity(intentLista);
-
             }
+
         });
+
+
 
     }
 

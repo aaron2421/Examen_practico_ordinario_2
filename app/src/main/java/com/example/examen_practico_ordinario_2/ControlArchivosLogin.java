@@ -46,11 +46,10 @@ public class ControlArchivosLogin extends AppCompatActivity {
                     if (userCursor.equals(userEditText) && passCursor.equals(passEditText)) {
                         Toast.makeText(getApplicationContext(), "Login correcto, bienvenido: " + userCursor, Toast.LENGTH_SHORT).show();
                         startActivity(intent);
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Login incorrecto, por favor intentalo de nuevo ", Toast.LENGTH_SHORT).show();
                     }
 
                 }
+
             }
         });
 
